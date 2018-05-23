@@ -1,4 +1,4 @@
-
+# python3 -c 'import dmisc; dub_path =  r"/home/dave/.dub/packages/"; generate_dmd_config(dub_path)'
 
 python3 <<EOF
 import sys
@@ -19,13 +19,11 @@ dcd_imports = generate_dcd_config(dub_path, std_imports)
 with open('../output/dmd.config', 'w') as file:
 	  file.write(dmd_imports)
 
-with open('../output/dcd.config', 'w') as file:
+with open('../output/dcd.conf', 'w') as file:
 	  file.write(dcd_imports)
 
 
 print(dmd_imports)
 
 EOF
-
-# python3 -c 'import dmisc; dub_path =  r"/home/dave/.dub/packages/"; generate_dmd_config(dub_path)'
 

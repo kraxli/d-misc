@@ -13,10 +13,13 @@ def get_dub_import_paths(dub_path, std_imports=True):
     """
 
     default_import_paths = [
-        '/usr/include/dmd', '/usr/include/dmd/phobos',
-        '/usr/include/dmd/druntime/import', dub_path,
-        os.path.abspath(os.path.join(dub_path, ".."))
+        '/usr/include/dmd/phobos',
+        '/usr/include/dmd/druntime/import',
+        '/snap/dmd/33/import/phobos',
     ]
+    # [dub_path,
+        # os.path.abspath(os.path.join(dub_path, ".."))
+    # ]
 
     print(std_imports)
     std_imports = default_import_paths if (
@@ -30,7 +33,10 @@ def get_dub_import_paths(dub_path, std_imports=True):
         if (package is None) or (type(package) is not str):
             continue
 
-        split_position = re.search("-\d", package).start()
+        try:
+            split_position = re.search("-\d", package).start()
+        except:
+            continue
         package_name = package[:split_position]
         package_version = package[split_position + 1:]
         if package_name not in package_registry.keys():
@@ -45,7 +51,9 @@ def get_dub_import_paths(dub_path, std_imports=True):
     source = lambda pack: os.path.join(dub_path, pack, 'source')
     parent = lambda pack: os.path.join(dub_path, pack)
     import_paths = list(
-        chain.from_iterable((parent(p), source(p)) for p in packages_latest))
+        # chain.from_iterable((parent(p), source(p)) for p in packages_latest)
+        source(p) for p in packages_latest
+    )
 
     return std_imports + import_paths
 

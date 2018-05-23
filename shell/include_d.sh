@@ -15,7 +15,7 @@ dub_path =  r"/home/dave/.dub/packages/"
 
 # set your own standard library imports
 std_imports = None
-std_imports = ['/usr/include/dmd/druntime/import', '/usr/include/dmd/phobos', '/snap/dmd/33/import/phobos']
+std_imports = ['/snap/dmd/33/import/phobos']
 
 dmd_imports = generate_dmd_config(dub_path, std_imports)
 dcd_imports = generate_dcd_config(dub_path, std_imports)
@@ -31,4 +31,4 @@ print(dmd_imports)
 
 EOF
 
-# python3 -c 'import sys; sys.path.insert(0, '../src_py3'); import dmisc; dub_path =  r"/home/dave/.dub/packages/"; dmisc.generate_dmd_config(dub_path)'
+# python3 -c 'import sys; sys.path.insert(0, "../src_py3"); import dmisc; dub_path =  r"/home/dave/.dub/packages/"; dmisc.generate_dmd_config(dub_path)'

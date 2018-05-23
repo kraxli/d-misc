@@ -1,4 +1,4 @@
-# python3 ./run.py
+# python3 ./run.py "/home/dave/.dub/packages/"
 
 import sys
 
@@ -31,6 +31,8 @@ def main(args):
         file.write(dcd_imports)
 
     print(dmd_imports)
+    print("\n")
+    print(dcd_imports)
 
 
 if __name__ == '__main__':

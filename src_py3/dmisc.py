@@ -45,11 +45,11 @@ def get_dub_import_paths(dub_path, std_imports=True):
             package_registry[package_name].append(package_version)
             package_registry[package_name].sort(reverse=True)
 
-    packages_latest = (pack + "-" + rel[0]
+    packages_latest = (os.path.join(pack + "-" + rel[0], pack)
                        for pack, rel in package_registry.items())
 
     source = lambda pack: os.path.join(dub_path, pack, 'source')
-    parent = lambda pack: os.path.join(dub_path, pack)
+    # parent = lambda pack: os.path.join(dub_path, pack)
     import_paths = list(
         # chain.from_iterable((parent(p), source(p)) for p in packages_latest)
         source(p) for p in packages_latest
